@@ -1,11 +1,16 @@
 # interview-prep
 
+## HLD:
+### Sources:
+- https://github.com/donnemartin/system-design-primer/tree/master
+
+
 ## LLD 
 ### Theory:
 - Design Principles: https://github.com/prateek27/design-patterns-java
 ### Questionresources
 - Gaurav Sen LLD playlist - https://www.youtube.com/watch?v=I-iZbOVXwxg&list=PLMCXHnjXnTnvQVh7WsgZ8SurU1O2v_UM7&index=3&ab_channel=GauravSen
-- Soumyajit Bhattacharayay LLD questions playlist - https://www.youtube.com/watch?v=7LaKmNfMCAo&list=PL12BCqE-Lp650Cg6FZW7SoZwN8Rw1WJI7&index=5&ab_channel=SoumyajitBhattacharyay
+- Soumyajit Bhattacharayay LLD questions playlist - https://www.youtube.com/watch?v=7LaKmNfMCAo&list=PL12BCqE-Lp650Cg6FZW7SoZwN8Rw1WJI7&index=5&ab_channel=SoumyajitBhattacharyay -> not very useful
 - https://github.com/ycwkatie/OOD-Object-Oriented-Design?tab=readme-ov-file -> has questions and handwritten solutions
 - https://github.com/ashishps1/awesome-low-level-design/blob/main/problems -> questions+diagrams+solutions+code
 ### Tips
@@ -19,3 +24,7 @@ interface FileSystemNode {
     // than having propeties name, path, isDirectory
 }
 ```
+- How to Generalize the Decision of where mappings should be stored?
+Mappings are generally stored in the DAO/repository of the entity being mapped TO, especially if that's your main access pattern.
+Seller-to-products: ProductDao, since products are the "leaf" objects and may be queried by seller often.
+User-to-Order, Product-to-order: OrderDao, since orders are typically the main entry point for these queries.

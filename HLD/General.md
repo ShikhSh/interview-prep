@@ -1,5 +1,0 @@
-# Concepts:
-
-## Change Data Capture
-
-##

@@ -1,3 +1,0 @@
-# Lucene
-
-# Elastic Search

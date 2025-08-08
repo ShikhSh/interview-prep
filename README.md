@@ -1,7 +1,16 @@
 # interview-prep
 
 ## HLD:
-### Sources:
+### Theory Sources:
+- Jordan Videos for theory - https://www.youtube.com/watch?v=crPoHnhkjFE&list=PLjTveVh7FakLdTmm42TMxbN8PvVn5g4KJ&index=53&ab_channel=Jordanhasnolife
+
+### Question Sources:
+- Jordan - new series is coming up though - https://www.youtube.com/watch?v=J-5JozlYIqI&list=PLjTveVh7FakJOoY6GPZGWHHl4shhDT8iV&index=20&ab_channel=Jordanhasnolife
+- https://www.hellointerview.com/learn/system-design/problem-breakdowns/ticketmaster
+- https://bytebytego.com/courses/system-design-interview/real-time-gaming-leaderboard
+
+
+Additional Resources:
 - https://github.com/donnemartin/system-design-primer/tree/master
 
 

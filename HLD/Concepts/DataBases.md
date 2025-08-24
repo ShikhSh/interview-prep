@@ -2,16 +2,21 @@
 
 ## SQL v/s NoSQL or more preferably, Relational v/s Non-relational DB:
 # Cassandra v/s MongoDB
-# SQL v/s Postgres
-- ACID systems, so take care of locking and everything.
-
 ## Relational DB - SQL v/s PostGres
-
+- ACID systems, so take care of locking and everything.
+- Both MySQL and Postgres:
+    - B-tree based index, where we store everything in disk, nothing in memory
+    - Reads faster than LSM tree based since there we have to go through different SS tables in memory, go through the Bloom filter to determine if something is present or not in a table and then return it accordingly.
+    - Single Leader replication
+- MySQL - read-write locks
+- Postgres - transactions reads from snapshot and need to rollback if things go wrong.
 
 ## Non-relational DB - MongoDB and Cassandra
 https://www.youtube.com/watch?v=6bxin9cZL_w&list=PLjTveVh7FakLdTmm42TMxbN8PvVn5g4KJ&index=36&ab_channel=Jordanhasnolife
 - Store data in a document format or not in form of relational tables:
 - Updating values - tough
+- LSM trees + SS tables
+- Leaderless replication - Write conflicts can exist and so use version vectors and CRDTs which are Conflict-free replication...
 
 ## Scaling DB:
 Storage Tier Scaling
@@ -61,6 +66,12 @@ Typically includes replication for durability.
 MongoDB → each shard is a full replica set
 Elasticsearch → each index has primary + replica shards
 DynamoDB → partitions mapped to physical storage nodes
+
+## Global Seconday Index: DYNAMO DB ONLY!!
+- Type of index in NoSQL databases like Amazon DynamoDB that lets you query data using an alternate partition key (and optionally a sort key), instead of being limited to the table’s primary key.
+_ GSIs are updated asynchronously (may have a slight delay compared to the base table).
+- GSIs consume their own read and write capacity units (separate from the base table), i.e., they are maintained as separate tables
+- Not supported by Cassandra directly, instead, Cassandra supports local secondary indexes.
 
 ## Time Series Databases, Hyper Table + Chunk Tables
 

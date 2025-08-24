@@ -2,6 +2,7 @@
 # Push v/s pull approach?
 # Load Balancer? - Nginx
 # Spark v/s Stream processing
+# Pagination
 
 # Serialization v/s compression - Protobuf, Avro, etc??
 - What is Data Serialization?
@@ -60,3 +61,13 @@ Examples:
 - Envoy
 - NGINX (with Lua or plugins)
 - Istio Ingress Gateway (for Kubernetes)
+
+# Connection types:
+- Long polling
+    - High Latency
+- SSE
+    - Low latency
+    - Unidirectional
+- Websockets
+    - Low latency
+    - Bidirectional

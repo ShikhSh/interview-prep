@@ -2,12 +2,28 @@
 - Interviewers might conduct interview one day and review another day, so they remember basic things and what you have written, so comment the below things.
 - Do not generate UUIDs, hardcode them in the test function and let them know that this should be generated using a UUID
 - Mention the variables should be private and accessed using getters and setters, but do not spend time adding them, add comments
+- Mention that the data stored in HashMaps will be fetched from the DAL (Data Access Layers)
+Basic Patterns commonly used in interviews:
+- Specification Patter: for searches (Uniz, Library, OR Advance Searches anywhere, etc)
+- Strategy Pattern: encapsulate an algorithm or policy so you can swap implementations at runtime, egs - for Payment Strategies, etc
+- State Pattern: Vending/Coffee machines
 # Questions:
 ### Uniq File Search:
 - https://leetcode.com/discuss/post/609070/amazon-ood-design-unix-file-search-api-b-b8py/
 - Specification pattern for the Search Criteria
+- use BFS
+- Params implemented as a separate class
+- Filters implement a common interface, and ALL of them stored in 1 FileFilter in an arraylist and then they are used to validate. If corresponding param == null, we let them be, else use it
+- Check file for more
 
-### Vending Maching Pattern:
+### Vending Maching/Coffee Maker:
+- Explanation: https://www.youtube.com/watch?v=8CcB3xAt9p4&ab_channel=RiddhiDutta
+- Code: https://github.com/ashishps1/awesome-low-level-design/tree/main/solutions/java/src/vendingmachine
+- Patterns:
+    - State Pattern because vending machine goes from Idle->SelectProduct->AcceptingPayment->Dispensing->Idle
+    - Strategy Pattern for Payment Strategy -> card, cash, etc
+    - Store file extension separately, don't complicate code in trying to find it!
+    - Check file for comments and more intricacies:
 
 ### Amazon Locker System:
 Partial but good: https://leetcode.com/discuss/post/233869/design-amazon-locker-system-by-anonymous-lgpn/comments/2421163/ 
@@ -21,14 +37,18 @@ Patterns:
         Impl -> EucledianDistance
 - Entities:
     - Locker -> id, isOccupied, size
-    - Location -> id, latitude, longitude, HashMap<PackageSize, Locker>
+    - Location -> id, latitude, longitude, HashMap<PackageSize, Locker> freeLockers, occupiedLockers
     - Customer -> id, name, email, phone
+    - Package -> size, user, locker
 - main classes:
     - LockerManagementService
-
+        - Mappings:
+            - UserID-User
+            - LocationId-Location
+            - OTP-Package
         - addLocker/addLocation
         - findClosest -> Use Strategy Pattern for finding closest locker
-        - assign
+        - assignPackage
         - retrievePackage
 
 # Mention

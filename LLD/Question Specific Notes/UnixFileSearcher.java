@@ -1,8 +1,99 @@
+import java.util.*;
+
+
+class SearchParams {
+    String extension;
+    Integer minSize;
+    Integer maxSize;
+    String name;
+}
+
+ interface IFilter {
+	  boolean isValid(SearchParams params, File file);
+  }
+
+  class ExtensionFilter implements IFilter {
+
+    @Override
+    public boolean isValid(SearchParams params, File file) {
+        /**
+ * NULL checks!
+ */
+      if (params.extension == null) {
+        return true;
+      }
 /**
+ * Store extension in File class!!
+ */
+      return file.extension.equals(params.extension);
+    }
+
+  }
+
+  class FileFilter {
+    private final List<IFilter> filters = new ArrayList<>();
+
+    FileFilter() {
+    //   filters.add(new NameFilter());
+    //   filters.add(new MaxSizeFilter());
+    //   filters.add(new MinSizeFilter());
+      filters.add(new ExtensionFilter());
+    }
+
+    public boolean isValid(SearchParams params, File file) {
+/**
+ * Checks for all filters!! returns true if the corresponding filter param is null!!
+ */
+	for (IFilter filter : filters) {
+        if (!filter.isValid(params, file)) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+  }
+
+class UnixFileSearcher {
+    private FileFilter filter = new FileFilter();
+
+    public List<File> search(Directory dir, SearchParams params) {
+      List<File> files = new ArrayList<>();
+
+      Queue<Directory> queue = new LinkedList<>();
+      queue.add(dir);
+
+    //   while (!queue.isEmpty()) {
+    //     Directory folder = queue.poll();
+
+    //     for (IEntry entry : folder.entries) {
+    //       if (entry.isDirectory()) {
+    //       queue.add((Directory) entry);
+    //       } else {
+    //       File file = (File) entry;
+		  
+	/**
+	 * CHECK FOR ALL FILTER!!
+	 */
+        //   if (filter.isValid(params, file)) {
+        //     files.add(file);
+        //   }
+        //   }
+    //     }
+    //   }
+
+      return files;
+	  }
+  }
+/**
+ * BELOW CODE IS GOOD, BUT NO DESIGN PATTERN USED!! NOT EXTENSIBLE!! SO IGNORE
 - file search system
 - given name, search file
 */
-import java.util.*;
+
+////////////////////////////// ADD DESIGN PATTERNS!!!!1 /////////////////
+
 interface Element {
 	public String getName();
 	public boolean isDirectory();
@@ -13,9 +104,11 @@ class File implements Element {
 	String name;
 	boolean isDirectory = false;
 	double size;
-	File(String name, double size) {
+    String extension;
+	File(String name, double size, String extension) {
 		this.name = name;
 		this.size = size;
+		this.extension = extension;
 	}
 	public String getName() {
 		return this.name;
